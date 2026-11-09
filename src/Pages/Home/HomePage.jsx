@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PirateLayout from "../../components/PirateTheme/PirateLayout";
 import mapImage from "../../assets/pirate_theme/treasure_map_cropped.jpg";
-import { FaCompass } from "react-icons/fa";
 
 const ISLAND_PINS = [
   {
     id: "nexus",
     title: "Nexus",
     path: "/nexus",
-    left: "28.9%",
-    top: "25.9%",
+    left: "26.5%",
+    top: "31.4%",
     width: "15%",
     height: "11%",
     badge: "⚔️",
@@ -20,8 +19,8 @@ const ISLAND_PINS = [
     id: "events",
     title: "Events",
     path: "/events",
-    left: "44.3%",
-    top: "40.9%",
+    left: "45.0%",
+    top: "44.8%",
     width: "15%",
     height: "11%",
     badge: "💣",
@@ -31,8 +30,8 @@ const ISLAND_PINS = [
     id: "team",
     title: "Team",
     path: "/team",
-    left: "68.0%",
-    top: "35.0%",
+    left: "70.9%",
+    top: "40.3%",
     width: "14%",
     height: "11%",
     badge: "👥",
@@ -42,8 +41,8 @@ const ISLAND_PINS = [
     id: "pmc",
     title: "Placement Masterclass",
     path: "/placement_masterclass",
-    left: "84.3%",
-    top: "52.1%",
+    left: "87.0%",
+    top: "54.7%",
     width: "17%",
     height: "13%",
     badge: "🎓",
@@ -53,8 +52,8 @@ const ISLAND_PINS = [
     id: "alumni",
     title: "Alumni",
     path: "/alumni",
-    left: "74.8%",
-    top: "65.5%",
+    left: "74.1%",
+    top: "77.1%",
     width: "15%",
     height: "11%",
     badge: "⚓",
@@ -64,8 +63,8 @@ const ISLAND_PINS = [
     id: "home",
     title: "Home",
     path: "/home",
-    left: "17.7%",
-    top: "70.0%",
+    left: "17.1%",
+    top: "81.5%",
     width: "15%",
     height: "11%",
     badge: "☸️",
@@ -75,10 +74,10 @@ const ISLAND_PINS = [
     id: "motto",
     title: "SECE Charter",
     path: "/home",
-    left: "88.0%",
-    top: "9.5%",
+    left: "90.0%",
+    top: "12.0%",
     width: "16%",
-    height: "14%",
+    height: "15%",
     badge: "📜",
     desc: "Different Islands, Same Crew, Bigger Dreams: Read the society story.",
     isMotto: true,
@@ -99,7 +98,7 @@ const HomePage = () => {
         {/* Map Container framed in antique wood/ragged border */}
         <div className="relative w-full rounded-2xl overflow-hidden border-2 border-[#543b20] shadow-[0_20px_50px_rgba(0,0,0,0.95)] bg-[#0f0b07]">
           {/* Main Map Image */}
-          <div className="relative w-full aspect-[730/514] overflow-hidden select-none">
+          <div className="relative w-full aspect-[1024/558] overflow-hidden select-none">
             <img
               src={mapImage}
               alt="SECE Treasure Map - Different Islands Same Crew Bigger Dreams"
@@ -147,31 +146,6 @@ const HomePage = () => {
                     </div>
                   </div>
                 )}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Legend / Quick Travel Bar under Map */}
-        <div className="w-full mt-4 p-3 rounded-xl bg-[#140e08]/90 border border-[#3d2c1b] flex flex-wrap items-center justify-between gap-3 text-xs">
-          <div className="flex items-center gap-2 text-[#cbb89b]">
-            <FaCompass className="text-[#c89d55] animate-[spin_20s_linear_infinite]" size={16} />
-            <span className="font-cinzel text-xs font-semibold text-[#f0cb79]">
-              Navigational Coordinates:
-            </span>
-            <span className="hidden sm:inline text-[#988266]">
-              Click on any text banner or island icon on the map to sail directly to that page!
-            </span>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-2">
-            {ISLAND_PINS.filter((p) => !p.isMotto).map((pin) => (
-              <button
-                key={pin.id}
-                onClick={() => handlePinClick(pin)}
-                className="px-2.5 py-1 rounded bg-[#20150c] border border-[#5a4228] hover:border-[#c89d55] text-[#d6c19f] hover:text-[#f7cd78] font-cinzel text-[11px] font-medium transition-all hover:scale-105 cursor-pointer"
-              >
-                {pin.badge} {pin.title}
               </button>
             ))}
           </div>

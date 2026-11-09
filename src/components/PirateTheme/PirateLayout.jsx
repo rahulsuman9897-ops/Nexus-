@@ -4,7 +4,6 @@ import {
   ShipWheelIcon,
   AnchorIcon,
   CrossedSwordsIcon,
-  PirateSkullBadge,
 } from "./PirateIcons";
 import {
   FaCalendarAlt,
@@ -12,7 +11,6 @@ import {
   FaGraduationCap,
   FaIdBadge,
   FaHome,
-  FaUser,
   FaYoutube,
   FaLinkedinIn,
   FaFacebookF,
@@ -30,13 +28,11 @@ export const NAV_ITEMS = [
   { name: "Alumni", path: "/alumni", icon: FaIdBadge },
   { name: "Nexus", path: "/nexus", icon: CrossedSwordsIcon },
   { name: "Home", path: "/home", icon: FaHome },
-  { name: "Profile", path: "#profile", icon: FaUser, isAction: true },
 ];
 
 const PirateLayout = ({ children, activeNav, topBarExtras }) => {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [profileOpen, setProfileOpen] = useState(false);
 
   // Determine current active item
   const currentPath = location.pathname;
@@ -44,7 +40,7 @@ const PirateLayout = ({ children, activeNav, topBarExtras }) => {
     if (activeNav) return activeNav.toLowerCase() === item.name.toLowerCase();
     if (item.path === "/" && (currentPath === "/" || currentPath === "/map")) return true;
     if (item.path === "/home" && currentPath === "/home") return true;
-    if (item.path !== "/" && item.path !== "#profile" && currentPath.startsWith(item.path)) return true;
+    if (item.path !== "/" && currentPath.startsWith(item.path)) return true;
     return false;
   };
 
@@ -105,25 +101,6 @@ const PirateLayout = ({ children, activeNav, topBarExtras }) => {
               {NAV_ITEMS.map((item) => {
                 const active = isItemActive(item);
                 const Icon = item.icon;
-
-                if (item.isAction) {
-                  return (
-                    <button
-                      key={item.name}
-                      onClick={() => setProfileOpen(!profileOpen)}
-                      className={`w-full flex items-center gap-3.5 px-3.5 py-2.5 rounded-md text-sm font-medium transition-all duration-200 text-left cursor-pointer ${
-                        profileOpen
-                          ? "bg-[#251a10] border border-[#9c7333] text-[#f7cd78] shadow-[0_0_12px_rgba(156,115,51,0.2)]"
-                          : "text-[#c2af94] hover:text-[#f3d48d] hover:bg-[#18110b] border border-transparent"
-                      }`}
-                    >
-                      <span className="w-5 flex justify-center text-base">
-                        <Icon size={16} />
-                      </span>
-                      <span className="tracking-wide">{item.name}</span>
-                    </button>
-                  );
-                }
 
                 return (
                   <Link
@@ -227,53 +204,13 @@ const PirateLayout = ({ children, activeNav, topBarExtras }) => {
         {/* Main Content Area */}
         <main className="flex-1 flex flex-col min-w-0 h-[100vh] lg:h-screen overflow-y-auto relative bg-[#0b0806]">
           {/* Top Bar for Desktop */}
-          <header className="sticky top-0 z-20 hidden lg:flex items-center justify-end px-6 py-2.5 bg-gradient-to-b from-[#0e0a07]/90 to-transparent backdrop-blur-[2px]">
-            <div className="flex items-center gap-4">
-              {/* Extra controls (e.g. Batch selector dropdown) */}
-              {topBarExtras}
-
-              {/* Profile Badge & Dropdown */}
-              <div className="relative">
-                <button
-                  onClick={() => setProfileOpen(!profileOpen)}
-                  className="flex items-center gap-2 px-2.5 py-1 rounded-full border border-[#4a3622] bg-[#17100a]/80 hover:border-[#9c7333] transition-colors text-xs text-[#d8c3a1]"
-                >
-                  <PirateSkullBadge className="w-6 h-6" />
-                  <span className="font-cinzel text-xs tracking-wider">My Profile</span>
-                  <span className="text-[9px] text-[#9a7e58]">▼</span>
-                </button>
-
-                {profileOpen && (
-                  <div className="absolute right-0 mt-2 w-48 rounded-lg bg-[#150f0a] border border-[#523d26] shadow-2xl p-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
-                    <div className="px-3 py-2 border-b border-[#312316] mb-1">
-                      <p className="text-xs font-semibold text-[#f0cd7d]">ECE Pirate Crew</p>
-                      <p className="text-[10px] text-[#937b60]">NIT Jamshedpur</p>
-                    </div>
-                    <Link
-                      to="/alumni"
-                      onClick={() => setProfileOpen(false)}
-                      className="block px-3 py-1.5 text-xs text-[#cfbc9e] hover:bg-[#251a10] hover:text-[#f3ca76] rounded"
-                    >
-                      View Alumni Records
-                    </Link>
-                    <Link
-                      to="/placement_masterclass"
-                      onClick={() => setProfileOpen(false)}
-                      className="block px-3 py-1.5 text-xs text-[#cfbc9e] hover:bg-[#251a10] hover:text-[#f3ca76] rounded"
-                    >
-                      Placement Masterclass
-                    </Link>
-                    <a
-                      href="mailto:sece.student@nitjsr.ac.in"
-                      className="block px-3 py-1.5 text-xs text-[#cfbc9e] hover:bg-[#251a10] hover:text-[#f3ca76] rounded"
-                    >
-                      Contact Society
-                    </a>
-                  </div>
-                )}
+          {topBarExtras && (
+            <header className="sticky top-0 z-20 hidden lg:flex items-center justify-end px-6 py-2.5 bg-gradient-to-b from-[#0e0a07]/90 to-transparent backdrop-blur-[2px]">
+              <div className="flex items-center gap-4">
+                {topBarExtras}
               </div>
-            </div>
-          </header>
+            </header>
+          )}
 
           {/* Children View Content */}
           <div className="flex-1 px-3 sm:px-6 pb-8 pt-2">

@@ -17,18 +17,19 @@ const TeamPage = () => {
 
   const currentMembers = batches[selectedBatchKey] || Batch2K23;
 
+  // Batch Selector Dropdown (Centered)
   const batchDropdown = (
-    <div className="relative">
+    <div className="relative inline-block z-40">
       <button
         onClick={() => setDropdownOpen(!dropdownOpen)}
-        className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#c89d55] bg-[#1a130b] text-[#e8c782] text-xs font-cinzel font-medium hover:bg-[#251b11] transition-colors shadow-md"
+        className="flex items-center gap-3 px-6 py-2 rounded-full border-2 border-[#8a6839] bg-[#160f08] text-[#f5ca73] text-sm font-cinzel font-semibold hover:border-[#d4af37] hover:bg-[#22160b] transition-all shadow-xl"
       >
         <span>{selectedBatchKey}</span>
-        <span className="text-[10px] text-[#c89d55]">▼</span>
+        <span className="text-xs text-[#d4af37]">▼</span>
       </button>
 
       {dropdownOpen && (
-        <div className="absolute right-0 mt-2 w-48 rounded-lg bg-[#16100a] border border-[#5a4228] shadow-2xl py-1 z-50 animate-in fade-in duration-150">
+        <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-52 rounded-lg bg-[#16100a] border-2 border-[#8a6839] shadow-2xl py-1 z-50 animate-in fade-in duration-150">
           {Object.keys(batches).map((batch) => (
             <button
               key={batch}
@@ -36,7 +37,7 @@ const TeamPage = () => {
                 setSelectedBatchKey(batch);
                 setDropdownOpen(false);
               }}
-              className={`w-full text-left px-4 py-2 text-xs font-cinzel transition-colors ${
+              className={`w-full text-center px-4 py-2 text-xs font-cinzel transition-colors ${
                 selectedBatchKey === batch
                   ? "bg-[#2c1d0e] text-[#f5ca73] font-bold"
                   : "text-[#cbb89b] hover:bg-[#22160b] hover:text-[#f0cf85]"
@@ -51,20 +52,25 @@ const TeamPage = () => {
   );
 
   return (
-    <PirateLayout activeNav="Team" topBarExtras={batchDropdown}>
+    <PirateLayout activeNav="Team">
       <div className="max-w-6xl mx-auto py-2">
         {/* Header */}
-        <div className="text-center mb-6">
+        <div className="text-center mb-8 flex flex-col items-center relative z-30">
           <h1 className="font-cinzel text-3xl sm:text-4xl font-extrabold text-[#f3ca76] tracking-wider drop-shadow-md">
             Our Crew & Leadership
           </h1>
           <p className="text-xs sm:text-sm font-serif text-[#ab9475] italic mt-1">
             Society of Electronics and Communication • NIT Jamshedpur
           </p>
+
+          {/* Centered Batch Button */}
+          <div className="mt-4 relative z-40">
+            {batchDropdown}
+          </div>
         </div>
 
         {/* Faculty Mentor Spotlight */}
-        <div className="max-w-lg mx-auto mb-10">
+        <div className="max-w-lg mx-auto mb-10 relative z-10">
           <div
             className="rounded-2xl p-6 sm:p-7 border-2 border-[#8a6839] shadow-2xl flex flex-col items-center text-center relative overflow-hidden"
             style={{

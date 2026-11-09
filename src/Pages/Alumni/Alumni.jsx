@@ -17,19 +17,19 @@ const Alumni = () => {
 
   const currentMembers = batches[selectedBatchKey] || Batch2K22;
 
-  // Batch Selector Dropdown for Top Bar
+  // Batch Selector Dropdown (Centered)
   const batchDropdown = (
-    <div className="relative">
+    <div className="relative inline-block">
       <button
         onClick={() => setDropdownOpen(!dropdownOpen)}
-        className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#c89d55] bg-[#1a130b] text-[#e8c782] text-xs font-cinzel font-medium hover:bg-[#251b11] transition-colors shadow-md"
+        className="flex items-center gap-3 px-6 py-2 rounded-full border-2 border-[#8a6839] bg-[#160f08] text-[#f5ca73] text-sm font-cinzel font-semibold hover:border-[#d4af37] hover:bg-[#22160b] transition-all shadow-xl"
       >
         <span>{selectedBatchKey}</span>
-        <span className="text-[10px] text-[#c89d55]">▼</span>
+        <span className="text-xs text-[#d4af37]">▼</span>
       </button>
 
       {dropdownOpen && (
-        <div className="absolute right-0 mt-2 w-48 rounded-lg bg-[#16100a] border border-[#5a4228] shadow-2xl py-1 z-50 animate-in fade-in duration-150">
+        <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-52 rounded-lg bg-[#16100a] border-2 border-[#8a6839] shadow-2xl py-1 z-50 animate-in fade-in duration-150">
           {Object.keys(batches).map((batch) => (
             <button
               key={batch}
@@ -37,7 +37,7 @@ const Alumni = () => {
                 setSelectedBatchKey(batch);
                 setDropdownOpen(false);
               }}
-              className={`w-full text-left px-4 py-2 text-xs font-cinzel transition-colors ${
+              className={`w-full text-center px-4 py-2 text-xs font-cinzel transition-colors ${
                 selectedBatchKey === batch
                   ? "bg-[#2c1d0e] text-[#f5ca73] font-bold"
                   : "text-[#cbb89b] hover:bg-[#22160b] hover:text-[#f0cf85]"
@@ -52,10 +52,15 @@ const Alumni = () => {
   );
 
   return (
-    <PirateLayout activeNav="Alumni" topBarExtras={batchDropdown}>
+    <PirateLayout activeNav="Alumni">
       <div className="max-w-3xl mx-auto py-2 relative flex flex-col items-center">
+        {/* Centered Batch Selector Button */}
+        <div className="mb-6 relative z-30">
+          {batchDropdown}
+        </div>
+
         {/* Main Ancient Scroll */}
-        <ParchmentScroll className="max-w-2xl">
+        <ParchmentScroll className="max-w-2xl relative z-10">
           {/* Scroll Header */}
           <div className="text-center pt-2 pb-6 border-b border-[#a88247]/30">
             <h1 className="font-cinzel text-3xl sm:text-4xl font-extrabold text-[#1a1006] tracking-wide">

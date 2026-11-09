@@ -4,9 +4,9 @@ import ParchmentScroll from "../../components/PirateTheme/ParchmentScroll";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const CalendarPage = () => {
-  const [currentMonth, setCurrentMonth] = useState({ name: "November", year: 2025 });
+  const [currentMonth, setCurrentMonth] = useState({ name: "November", year: 2026 });
 
-  const startDay = 6; // Saturday
+  const startDay = 0; // Sunday (Nov 1, 2026)
   const daysInMonth = 30;
   const calendarDays = [];
   for (let i = 0; i < startDay; i++) {
@@ -16,7 +16,7 @@ const CalendarPage = () => {
     calendarDays.push(day);
   }
 
-  const highlightedDays = [12, 13, 14];
+  const highlightedDays = [20, 21, 22];
 
   return (
     <PirateLayout activeNav="Events">
@@ -24,7 +24,7 @@ const CalendarPage = () => {
         <ParchmentScroll>
           <div className="text-center mb-3">
             <h1 className="font-fondamento italic text-2xl sm:text-3xl font-bold text-[#2a1708]">
-              Events Calendar 2025-26
+              Events Calendar 2026-27
             </h1>
 
             {/* Month Navigator */}
@@ -85,7 +85,7 @@ const CalendarPage = () => {
 
           {/* Event description */}
           <div className="mt-4 pt-3 border-t border-[#ab854a]/20 text-center text-xs font-serif text-[#54381e] italic">
-            Nov 12-14: Annual Technical Symposium & Flagship Hackathon
+            Nov 20-22: Nexus Fest - Annual Flagship Fest of ECE
           </div>
         </ParchmentScroll>
       </div>

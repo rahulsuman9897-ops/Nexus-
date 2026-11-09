@@ -87,89 +87,100 @@ const HomeView = () => {
           </div>
         </ParchmentScroll>
 
-        {/* Society Pillars / Main Sections Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {/* Nexus Fest Card */}
-          <div
-            className="rounded-xl p-5 border-2 border-[#8a6839]/70 shadow-xl flex flex-col justify-between transition-transform duration-200 hover:-translate-y-1"
-            style={{
-              background:
-                "linear-gradient(180deg, #ecd6a4 0%, #f6e6c2 25%, #fbf2db 60%, #e8cca0 100%)",
-            }}
-          >
-            <div className="space-y-3">
-              <div className="relative rounded-lg overflow-hidden border border-[#8a6839] h-40 bg-[#160f08]">
-                <img
-                  src={nexusPhoto}
-                  alt="Nexus Fest"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute top-2 left-2 px-2.5 py-1 rounded bg-[#160f08]/90 border border-[#8a6839] text-[#f5ca73] font-cinzel text-[10px] font-bold flex items-center gap-1.5">
-                  <CrossedSwordsIcon className="w-3.5 h-3.5" color="#f5ca73" />
-                  <span>Annual Flagship Fest</span>
+        {/* Society Pillars: Nexus & Events (Each in its own full row inside Parchment Scroll) */}
+        <div className="flex flex-col gap-8 sm:gap-10 max-w-5xl mx-auto w-full">
+          {/* Row 1: Nexus Fest */}
+          <section className="w-full">
+            <h2 className="font-cinzel text-2xl sm:text-3xl font-extrabold text-[#f3ca76] tracking-wide mb-2 flex items-center gap-2.5">
+              <CrossedSwordsIcon className="w-6 h-6" color="#f5ca73" />
+              <span>Nexus</span>
+            </h2>
+
+            <ParchmentScroll className="w-full">
+              <div className="flex flex-col md:flex-row items-center gap-6 sm:gap-8 py-2">
+                {/* Left Column: Text */}
+                <div className="w-full md:w-1/2 flex flex-col justify-between self-stretch">
+                  <div>
+                    <h3 className="font-cinzel font-bold text-xl sm:text-2xl text-[#1a0f05] mb-3 border-b border-[#8a602a]/30 pb-2">
+                      Nexus — Where Fun Meets Brilliance!
+                    </h3>
+                    <p className="text-sm sm:text-[15px] leading-relaxed text-[#2b1a0e] text-justify font-sans font-medium">
+                      Nexus is the signature fest of the ECE department at NIT Jamshedpur, celebrated
+                      every year with unmatched enthusiasm. A three-day extravaganza combining robotics battles,
+                      Decoduino IoT competitions, CP contests, talent hunts, and vibrant cultural nights,
+                      bringing together students from all disciplines to innovate and celebrate.
+                    </p>
+                  </div>
+
+                  <div className="mt-5 pt-3 border-t border-[#8a602a]/30 flex justify-end">
+                    <Link
+                      to="/nexus"
+                      className="px-4 py-2 rounded-lg bg-[#20150b] border border-[#a67c38] text-[#f5ca73] hover:bg-[#8a6839] hover:text-[#140e08] font-cinzel text-xs font-bold transition-all shadow-md hover:scale-105 inline-flex items-center gap-1.5"
+                    >
+                      <span>Discover Nexus</span>
+                      <span>➔</span>
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Right Column: Photo */}
+                <div className="w-full md:w-1/2 h-[260px] sm:h-[320px] rounded-xl overflow-hidden border-2 border-[#7a5423] shadow-xl relative flex-shrink-0 bg-[#140e08]">
+                  <img
+                    src={nexusPhoto}
+                    alt="Nexus Fest"
+                    className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
+                  />
                 </div>
               </div>
+            </ParchmentScroll>
+          </section>
 
-              <h3 className="font-cinzel font-bold text-lg text-[#1a0f05]">
-                Nexus — Where Fun Meets Brilliance!
-              </h3>
-              <p className="text-xs font-serif text-[#4a3521] leading-relaxed text-justify">
-                Nexus is the signature fest of the ECE department at NIT Jamshedpur, celebrated
-                every October or November. A three-day extravaganza combining robotics battles,
-                Decoduino IoT competitions, CP contests, and vibrant cultural nights.
-              </p>
-            </div>
+          {/* Row 2: Events & Competitions */}
+          <section className="w-full">
+            <h2 className="font-cinzel text-2xl sm:text-3xl font-extrabold text-[#f3ca76] tracking-wide mb-2 flex items-center gap-2.5">
+              <FaCalendarAlt className="text-[#f5ca73] text-xl" />
+              <span>Events</span>
+            </h2>
 
-            <div className="mt-4 pt-3 border-t border-[#8a6839]/30 flex justify-end">
-              <Link
-                to="/nexus"
-                className="px-3.5 py-1.5 rounded-md bg-[#1c1209] text-[#ecd8b0] hover:bg-[#8a6839] hover:text-[#1c1209] font-cinzel text-xs font-bold transition-colors"
-              >
-                Discover Nexus ➔
-              </Link>
-            </div>
-          </div>
+            <ParchmentScroll className="w-full">
+              <div className="flex flex-col md:flex-row items-center gap-6 sm:gap-8 py-2">
+                {/* Left Column: Text */}
+                <div className="w-full md:w-1/2 flex flex-col justify-between self-stretch">
+                  <div>
+                    <h3 className="font-cinzel font-bold text-xl sm:text-2xl text-[#1a0f05] mb-3 border-b border-[#8a602a]/30 pb-2">
+                      Year-Round Events & Workshops
+                    </h3>
+                    <p className="text-sm sm:text-[15px] leading-relaxed text-[#2b1a0e] text-justify font-sans font-medium">
+                      The Society of Electronics and Communication Engineering (SECE) conducts a series of
+                      events throughout the year, offering students a platform to showcase their talents and
+                      unlock their potential. We organize a variety of workshops, webinars, and competitions
+                      on diverse topics ranging from electronics, coding to fun events designed to enhance
+                      the technical and programming skills of students.
+                    </p>
+                  </div>
 
-          {/* Events & Competitions Card */}
-          <div
-            className="rounded-xl p-5 border-2 border-[#8a6839]/70 shadow-xl flex flex-col justify-between transition-transform duration-200 hover:-translate-y-1"
-            style={{
-              background:
-                "linear-gradient(180deg, #ecd6a4 0%, #f6e6c2 25%, #fbf2db 60%, #e8cca0 100%)",
-            }}
-          >
-            <div className="space-y-3">
-              <div className="relative rounded-lg overflow-hidden border border-[#8a6839] h-40 bg-[#160f08]">
-                <img
-                  src={eventPhoto}
-                  alt="SECE Events"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute top-2 left-2 px-2.5 py-1 rounded bg-[#160f08]/90 border border-[#8a6839] text-[#f5ca73] font-cinzel text-[10px] font-bold flex items-center gap-1.5">
-                  <FaCalendarAlt size={11} />
-                  <span>Technical & Cultural</span>
+                  <div className="mt-5 pt-3 border-t border-[#8a602a]/30 flex justify-end">
+                    <Link
+                      to="/events"
+                      className="px-4 py-2 rounded-lg bg-[#20150b] border border-[#a67c38] text-[#f5ca73] hover:bg-[#8a6839] hover:text-[#140e08] font-cinzel text-xs font-bold transition-all shadow-md hover:scale-105 inline-flex items-center gap-1.5"
+                    >
+                      <span>Explore Events</span>
+                      <span>➔</span>
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Right Column: Photo */}
+                <div className="w-full md:w-1/2 h-[260px] sm:h-[320px] rounded-xl overflow-hidden border-2 border-[#7a5423] shadow-xl relative flex-shrink-0 bg-[#140e08]">
+                  <img
+                    src={eventPhoto}
+                    alt="SECE Events"
+                    className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
+                  />
                 </div>
               </div>
-
-              <h3 className="font-cinzel font-bold text-lg text-[#1a0f05]">
-                Year-Round Events & Workshops
-              </h3>
-              <p className="text-xs font-serif text-[#4a3521] leading-relaxed text-justify">
-                SECE conducts high-impact programming contests, technical hands-on sessions,
-                robotics workshops, and circuit design challenges to nurture core engineering
-                and problem-solving skills across the campus.
-              </p>
-            </div>
-
-            <div className="mt-4 pt-3 border-t border-[#8a6839]/30 flex justify-end">
-              <Link
-                to="/events"
-                className="px-3.5 py-1.5 rounded-md bg-[#1c1209] text-[#ecd8b0] hover:bg-[#8a6839] hover:text-[#1c1209] font-cinzel text-xs font-bold transition-colors"
-              >
-                Explore Events ➔
-              </Link>
-            </div>
-          </div>
+            </ParchmentScroll>
+          </section>
         </div>
 
         {/* Quick Island Hop Links */}

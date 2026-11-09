@@ -2,37 +2,13 @@ import React, { useState } from "react";
 import PirateLayout from "../../components/PirateTheme/PirateLayout";
 import { PMCData } from "./PMCData.js";
 import { WaxSealStamp } from "../../components/PirateTheme/PirateIcons";
+import { ScrollCard } from "../../components/PirateTheme/ScrollCard";
 import { FaTimes } from "react-icons/fa";
 
 const HorizontalScrollCard = ({ member, onOpenModal }) => {
   return (
-    <div className="relative group transition-transform duration-200 hover:-translate-y-1 w-full">
-      {/* Scroll Cylinder Ends: Left Roll */}
-      <div
-        className="absolute -left-2.5 top-0 bottom-0 w-3.5 rounded-l-md z-20 shadow-md"
-        style={{
-          background: "linear-gradient(90deg, #7a5423 0%, #caa163 35%, #fff2cf 60%, #9b7235 100%)",
-          boxShadow: "inset -1px 0 2px rgba(0,0,0,0.4)",
-        }}
-      />
-
-      {/* Main Parchment Card Body */}
-      <div
-        className="relative z-10 rounded-md p-4 sm:p-5 flex items-center justify-between border-y-2 border-[#8e6833] overflow-hidden"
-        style={{
-          background: "linear-gradient(180deg, #ecd6a4 0%, #f6e6c2 15%, #fbf2db 50%, #f2ddb2 85%, #e5c993 100%)",
-          boxShadow: "0 8px 18px rgba(0,0,0,0.65), inset 0 2px 4px rgba(255,255,255,0.4)",
-        }}
-      >
-        {/* Subtle Map / Cartography Watermark Grid Texture */}
-        <div
-          className="absolute inset-0 pointer-events-none opacity-[0.06] bg-repeat"
-          style={{
-            backgroundImage: `radial-gradient(#5a3916 1px, transparent 1px), linear-gradient(to right, rgba(90,57,22,0.2) 1px, transparent 1px), linear-gradient(to bottom, rgba(90,57,22,0.2) 1px, transparent 1px)`,
-            backgroundSize: "20px 20px, 40px 40px, 40px 40px",
-          }}
-        />
-
+    <ScrollCard className="w-full">
+      <div className="flex items-center justify-between gap-4 w-full px-2 sm:px-4 py-1">
         {/* Left Side: Photo + Name + Read More Button */}
         <div className="flex items-center gap-4 sm:gap-6 z-10">
           {/* Member Photo */}
@@ -52,7 +28,7 @@ const HorizontalScrollCard = ({ member, onOpenModal }) => {
 
             <button
               onClick={() => onOpenModal(member)}
-              className="mt-2.5 self-start px-4 py-1.5 rounded border border-[#6b4c23] bg-[#ddbe8a] hover:bg-[#c9a76d] text-[#1a1005] font-cinzel font-bold text-xs sm:text-sm tracking-wider transition-all shadow-md active:scale-95"
+              className="mt-2.5 self-start px-4 py-1.5 rounded border border-[#6b4c23] bg-[#ddbe8a] hover:bg-[#c9a76d] text-[#1a1005] font-cinzel font-bold text-xs sm:text-sm tracking-wider transition-all shadow-md active:scale-95 cursor-pointer"
             >
               Read More
             </button>
@@ -60,7 +36,7 @@ const HorizontalScrollCard = ({ member, onOpenModal }) => {
         </div>
 
         {/* Right Side: Company Logo */}
-        <div className="flex items-center justify-end z-10 max-w-[130px] sm:max-w-[170px] max-h-14 pr-3 sm:pr-8">
+        <div className="flex items-center justify-end z-10 max-w-[130px] sm:max-w-[170px] max-h-14 pr-2 sm:pr-6">
           {member.logo && (
             <img
               src={member.logo}
@@ -71,20 +47,11 @@ const HorizontalScrollCard = ({ member, onOpenModal }) => {
         </div>
 
         {/* Wax Seal Stamp (bottom center-right) */}
-        <div className="absolute right-36 sm:right-56 -bottom-2 z-20 pointer-events-none">
+        <div className="absolute right-28 sm:right-48 -bottom-1 z-20 pointer-events-none">
           <WaxSealStamp className="w-8 h-9 sm:w-10 sm:h-11" />
         </div>
       </div>
-
-      {/* Scroll Cylinder Ends: Right Roll */}
-      <div
-        className="absolute -right-2.5 top-0 bottom-0 w-3.5 rounded-r-md z-20 shadow-md"
-        style={{
-          background: "linear-gradient(90deg, #9b7235 0%, #fff2cf 40%, #caa163 65%, #7a5423 100%)",
-          boxShadow: "inset 1px 0 2px rgba(0,0,0,0.4)",
-        }}
-      />
-    </div>
+    </ScrollCard>
   );
 };
 

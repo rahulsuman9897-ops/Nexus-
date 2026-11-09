@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PirateLayout from "../../components/PirateTheme/PirateLayout";
 import ParchmentScroll from "../../components/PirateTheme/ParchmentScroll";
+import ScrollCard from "../../components/PirateTheme/ScrollCard";
 import { Batch2K22, Batch2K23, Batch2K24 } from "./index";
 import faculty_image from "../../assets/Member/dr-surajit-kundu.jpg";
 import { FaEnvelope, FaLinkedin } from "react-icons/fa";
@@ -70,45 +71,45 @@ const TeamPage = () => {
         </div>
 
         {/* Faculty Mentor Spotlight */}
-        <div className="max-w-lg mx-auto mb-10 relative z-10">
-          <div
-            className="rounded-2xl p-6 sm:p-7 border-2 border-[#8a6839] shadow-2xl flex flex-col items-center text-center relative overflow-hidden"
-            style={{
-              background:
-                "linear-gradient(180deg, #ecd6a4 0%, #f6e6c2 20%, #fbf2db 50%, #f2ddb2 85%, #e5c993 100%)",
-            }}
-          >
-            <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-2 sm:border-[3px] border-[#6d4f26] shadow-md mb-3 bg-[#1a1209]">
-              <img
-                src={faculty_image}
-                alt="Dr. Surajit Kundu"
-                className="w-full h-full object-cover object-top"
-              />
+        <div className="max-w-md mx-auto mb-10 relative z-10">
+          <ParchmentScroll>
+            <div className="flex flex-col items-center text-center">
+              <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-2 sm:border-[3px] border-[#735227] shadow-md mb-3 bg-[#1a1209]">
+                <img
+                  src={faculty_image}
+                  alt="Dr. Surajit Kundu"
+                  className="w-full h-full object-cover object-top"
+                />
+              </div>
+              <h3 className="font-cinzel font-bold text-xl sm:text-2xl text-[#1a1005] tracking-wide">
+                Dr. Surajit Kundu
+              </h3>
+              <p className="text-sm sm:text-base font-serif italic text-[#543b22] font-semibold mt-0.5">
+                Faculty Mentor
+              </p>
+              <p className="text-xs sm:text-sm text-[#3d240d] mt-1 max-w-sm font-sans font-medium">
+                Department of Electronics and Communication Engineering
+              </p>
+              <div className="flex gap-3.5 mt-4">
+                <a
+                  href="mailto:surajitkundu.ece@nitjsr.ac.in"
+                  className="w-8 h-8 rounded-full bg-[#1b1208] text-[#f0cf85] flex items-center justify-center hover:bg-[#8a6839] hover:text-[#1b1208] transition-colors shadow-md"
+                  title="Email"
+                >
+                  <FaEnvelope size={14} />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/surajit-kundu-9ba194143/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-8 h-8 rounded-full bg-[#1b1208] text-[#f0cf85] flex items-center justify-center hover:bg-[#0077b5] hover:text-white transition-colors shadow-md"
+                  title="LinkedIn"
+                >
+                  <FaLinkedin size={15} />
+                </a>
+              </div>
             </div>
-            <h3 className="font-cinzel font-bold text-xl sm:text-2xl text-[#1a1005] tracking-wide">Dr. Surajit Kundu</h3>
-            <p className="text-sm sm:text-base font-serif italic text-[#543b22] font-semibold mt-0.5">Faculty Mentor</p>
-            <p className="text-xs sm:text-sm text-[#422c15] mt-1 max-w-sm">
-              Department of Electronics and Communication Engineering
-            </p>
-            <div className="flex gap-3.5 mt-4">
-              <a
-                href="mailto:surajitkundu.ece@nitjsr.ac.in"
-                className="w-8 h-8 rounded-full bg-[#1b1208] text-[#f0cf85] flex items-center justify-center hover:bg-[#8a6839] hover:text-[#1b1208] transition-colors shadow-md"
-                title="Email"
-              >
-                <FaEnvelope size={14} />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/surajit-kundu-9ba194143/"
-                target="_blank"
-                rel="noreferrer"
-                className="w-8 h-8 rounded-full bg-[#1b1208] text-[#f0cf85] flex items-center justify-center hover:bg-[#8a6839] hover:text-[#1b1208] transition-colors shadow-md"
-                title="LinkedIn"
-              >
-                <FaLinkedin size={15} />
-              </a>
-            </div>
-          </div>
+          </ParchmentScroll>
         </div>
 
         {/* Members Grid (3 cards per row) */}
@@ -121,14 +122,7 @@ const TeamPage = () => {
             const linkedin = member.linkedin || member.LinkedIn;
 
             return (
-              <div
-                key={index}
-                className="group relative rounded-xl p-6 sm:p-7 border-2 border-[#8a6839]/80 shadow-xl flex flex-col items-center text-center transition-all duration-200 hover:-translate-y-1.5 hover:border-[#d4af37] hover:shadow-2xl"
-                style={{
-                  background:
-                    "linear-gradient(180deg, #ecd6a4 0%, #f7e7c4 25%, #fbf2dc 60%, #e8cca0 100%)",
-                }}
-              >
+              <ScrollCard key={index} className="h-full">
                 {/* Member Avatar */}
                 <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-2 sm:border-[3px] border-[#735227] shadow-md mb-4 bg-[#1b1208] flex-shrink-0">
                   {photo ? (
@@ -175,7 +169,7 @@ const TeamPage = () => {
                     </a>
                   )}
                 </div>
-              </div>
+              </ScrollCard>
             );
           })}
         </div>

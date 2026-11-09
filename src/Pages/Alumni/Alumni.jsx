@@ -1,166 +1,127 @@
-import { useState, useRef } from "react";
-import React from "react";
-import Navbar2 from "../../components/Navbar2";
-import MenuButton from "../../components/MenuButton/MenuButton";
-import NavDrawer from "../../components/Navbar/NavDrawer.jsx";
-import Footer from "../../components/Footer/Footer.jsx";
+import React, { useState } from "react";
+import PirateLayout from "../../components/PirateTheme/PirateLayout";
+import ParchmentScroll from "../../components/PirateTheme/ParchmentScroll";
 import { Batch2k19, Batch2k20, Batch2K21, Batch2K22 } from "../Team/index.js";
-import "./Alumni.css";
 import { FaLinkedin } from "react-icons/fa";
 
 const Alumni = () => {
   const batches = {
-    "Batch 2K19-2K23": Batch2k19,
-    "Batch 2K20-2K24": Batch2k20,
-    "Batch 2K21-2K25": Batch2K21,
-    "Batch 2K22-2K26": Batch2K22,
+    "Batch 2022-2026": Batch2K22,
+    "Batch 2021-2025": Batch2K21,
+    "Batch 2020-2024": Batch2k20,
+    "Batch 2019-2023": Batch2k19,
   };
-  const handleLinkClick = (batch) => {
-    setSelectedBatch(batch);
-    sectionRef.current.scrollIntoView({ behavior: "smooth" });
-  };
-  const [selectedBatch, setSelectedBatch] = useState("Batch 2K19-2K23");
-  const sectionRef = useRef(null);
 
-  const handleBatchChange = (e) => {
-    setSelectedBatch(e.target.value);
-  };
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const toggleDrawer = (isOpen) => {
-    setDrawerOpen(isOpen);
-  };
-  return (
-    <>
-      <Navbar2 />
-      <NavDrawer open={drawerOpen} onClose={() => toggleDrawer(false)} />
-      <MenuButton onClick={() => toggleDrawer(true)} className="hamburger-home" />
-      <section className="text-white flex flex-col items-center">
-        <div className="team-page__links flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-6">
-          <a
-            href="#section1"
-            className="hover:underline hover:text-sky-500 text-lg cursor-pointer"
-            onClick={() => handleLinkClick("Batch 2K19-2K23")}
-          >
-            Batch 2K19-2k23
-          </a>
-          <a
-            href="#section2"
-            className="hover:underline hover:text-sky-500 text-lg cursor-pointer"
-            onClick={() => handleLinkClick("Batch 2K20-2K24")}
-          >
-            Batch 2K20-2k24
-          </a>
-          <a
-            href="#section3"
-            className="hover:underline hover:text-sky-500 text-lg cursor-pointer"
-            onClick={() => handleLinkClick("Batch 2K21-2K25")}
-          >
-            Batch 2K21-2k25
-          </a>
-          <a
-            href="#section4"
-            className="hover:underline hover:text-sky-500 text-lg cursor-pointer"
-            onClick={() => handleLinkClick("Batch 2K22-2K26")}
-          >
-            Batch 2K22-2k26
-          </a>
-        </div>
-      </section>
-      <div
-        className="mb-6 flex justify-center items-center"
-        style={{ marginTop: "8rem" }}
+  const [selectedBatchKey, setSelectedBatchKey] = useState("Batch 2022-2026");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const currentMembers = batches[selectedBatchKey] || Batch2K22;
+
+  // Batch Selector Dropdown for Top Bar
+  const batchDropdown = (
+    <div className="relative">
+      <button
+        onClick={() => setDropdownOpen(!dropdownOpen)}
+        className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#c89d55] bg-[#1a130b] text-[#e8c782] text-xs font-cinzel font-medium hover:bg-[#251b11] transition-colors shadow-md"
       >
-        <select
-          className="px-6 py-3 rounded-full border border-gray-300 text-gray-700 text-xl bg-white transition-all duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
-          value={selectedBatch}
-          onChange={handleBatchChange}
-          style={{
-            backgroundColor: "black",
-            color: "white",
-            border: "solid 2px #F2CC65",
-            boxShadow: "1px 1px 1px 1px #F2CC65",
-          }}
-        >
+        <span>{selectedBatchKey}</span>
+        <span className="text-[10px] text-[#c89d55]">▼</span>
+      </button>
+
+      {dropdownOpen && (
+        <div className="absolute right-0 mt-2 w-48 rounded-lg bg-[#16100a] border border-[#5a4228] shadow-2xl py-1 z-50 animate-in fade-in duration-150">
           {Object.keys(batches).map((batch) => (
-            <option key={batch} value={batch}>
+            <button
+              key={batch}
+              onClick={() => {
+                setSelectedBatchKey(batch);
+                setDropdownOpen(false);
+              }}
+              className={`w-full text-left px-4 py-2 text-xs font-cinzel transition-colors ${
+                selectedBatchKey === batch
+                  ? "bg-[#2c1d0e] text-[#f5ca73] font-bold"
+                  : "text-[#cbb89b] hover:bg-[#22160b] hover:text-[#f0cf85]"
+              }`}
+            >
               {batch}
-            </option>
+            </button>
           ))}
-        </select>
-      </div>
-      <div
-        className="relative overflow-x-auto shadow-md rounded-lg w-full max-w-4xl mx-auto mt-20 px-4 md:px-8"
-        style={{ boxShadow: "none" }}
-      >
-        <h2
-          className="text-[#F2CC65] font-harry text-3xl md:text-4xl tracking-wide mb-6 py-3"
-          style={{ textAlign: "center", margin: "auto" }}
-        >
-          Creators of Community, Architects of Tomorrow
-        </h2>
+        </div>
+      )}
+    </div>
+  );
 
-        <table
-          class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
-          style={{ border: "solid 2px #F2CC65" }}
-        >
-          <thead
-            class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
-            style={{ backgroundColor: "black", color: "#F2CC65" }}
-          >
-            <tr>
-              <th scope="col" class="px-10 py-3">
-                Name
-              </th>
-              <th scope="col" class="px-14 py-3">
-                POR
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {batches[selectedBatch].map((member, index) => (
-              <tr
-                key={index}
-                className={`${
-                  index % 2 === 0
-                    ? "odd:bg-white odd:dark:bg-gray-900"
-                    : "even:bg-gray-50 even:dark:bg-gray-800"
-                } border-b dark:border-gray-700`}
-              >
-                <th
-                  scope="row"
-                  className="px-6 py-4 font-bold text-black-900 whitespace-nowrap dark:text-white alumni-name"
-                >
-                  {member.name}
-                </th>
-                <td
-                  class="px-6 py-4 flex items-center justify-between md:justify-center"
-                  style={{ backgroundColor: "black", color: "white", paddingRight: 0 }}
-                >
-                  <div className="flex w-full items-center px-4 justify-center">
-                    <span className="mx-2">{member.post}</span>
-                    <div className="flex-1" />
-                    {member.linkedin && (
-                      <a
-                        href={member.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="ml-auto text-[#F2CC65] hover:text-[#e7eca1] flex items-center justify-end"
-                        style={{ marginLeft: "auto" }}
-                      >
-                        <FaLinkedin size={20} />
-                      </a>
-                    )}
+  return (
+    <PirateLayout activeNav="Alumni" topBarExtras={batchDropdown}>
+      <div className="max-w-3xl mx-auto py-2 relative flex flex-col items-center">
+        {/* Main Ancient Scroll */}
+        <ParchmentScroll className="max-w-2xl">
+          {/* Scroll Header */}
+          <div className="text-center pt-2 pb-6 border-b border-[#a88247]/30">
+            <h1 className="font-cinzel text-3xl sm:text-4xl font-extrabold text-[#1a1006] tracking-wide">
+              Alumni
+            </h1>
+            <p className="text-xs font-serif text-[#64441f] italic mt-0.5 tracking-wider">
+              {selectedBatchKey} • Society of Electronics and Communication
+            </p>
+          </div>
+
+          {/* Alumni Table */}
+          <div className="py-4 px-1 sm:px-6">
+            {/* Table Column Titles */}
+            <div className="grid grid-cols-12 pb-3 border-b-2 border-[#875d27]/40 text-[#422912] font-cinzel font-bold text-xs sm:text-sm tracking-wider uppercase">
+              <div className="col-span-5 sm:col-span-5 pl-2">NAME</div>
+              <div className="col-span-5 sm:col-span-5">POR</div>
+              <div className="col-span-2 sm:col-span-2 text-right pr-2">LINK</div>
+            </div>
+
+            {/* Table Rows */}
+            <div className="divide-y divide-[#a88247]/20">
+              {currentMembers.map((member, index) => {
+                const por = member.post || member.POR || "Core Member";
+                const linkedinUrl = member.linkedin || member.LinkedIn;
+
+                return (
+                  <div
+                    key={index}
+                    className="grid grid-cols-12 items-center py-2.5 sm:py-3 text-xs sm:text-sm transition-colors hover:bg-[#ebd3a0]/40 rounded px-2"
+                  >
+                    {/* Name */}
+                    <div className="col-span-5 sm:col-span-5 font-semibold text-[#1a1006] truncate pr-2">
+                      {member.name || member.Name}
+                    </div>
+
+                    {/* POR */}
+                    <div className="col-span-5 sm:col-span-5 text-[#2e1d0f] font-medium truncate pr-2">
+                      {por}
+                    </div>
+
+                    {/* LinkedIn Link */}
+                    <div className="col-span-2 sm:col-span-2 flex justify-end">
+                      {linkedinUrl ? (
+                        <a
+                          href={linkedinUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="w-6 h-6 rounded bg-[#1c1209] hover:bg-[#0077b5] text-[#ecd8b0] hover:text-white flex items-center justify-center transition-all duration-200 shadow-sm"
+                          title={`LinkedIn profile of ${member.name || member.Name}`}
+                        >
+                          <FaLinkedin size={14} />
+                        </a>
+                      ) : (
+                        <div className="w-6 h-6 rounded bg-[#1c1209]/40 text-[#ecd8b0]/40 flex items-center justify-center text-[10px]">
+                          -
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                );
+              })}
+            </div>
+          </div>
+        </ParchmentScroll>
       </div>
-      <div className="pt-12">
-        <Footer />
-      </div>
-    </>
+    </PirateLayout>
   );
 };
 

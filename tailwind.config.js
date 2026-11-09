@@ -16,6 +16,13 @@ module.exports = {
       fontFamily: {
         lumos: ['"Lumos"', ...defaultTheme.fontFamily.sans],
         harry: ['"Harry Potter"', 'sans-serif'],
+        cinzel: ['"Cinzel"', 'serif'],
+        pirata: ['"Pirata One"', 'cursive'],
+        medieval: ['"MedievalSharp"', 'cursive'],
+        fondamento: ['"Fondamento"', 'cursive'],
+        playfair: ['"Playfair Display"', 'serif'],
+        berkshire: ['"Berkshire Swash"', 'cursive'],
+        body: ['"Plus Jakarta Sans"', 'sans-serif'],
       },
       animation: {
         "meteor-effect": "meteor 5s linear infinite",
